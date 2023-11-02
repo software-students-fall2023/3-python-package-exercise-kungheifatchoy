@@ -24,5 +24,7 @@
 Nicolas Izurieta: https://github.com/ni2050
 
 
-## Link to package's page on PyPi website
+## Link to Package
+
+*insert link to package's page on PyPi website here*
 
