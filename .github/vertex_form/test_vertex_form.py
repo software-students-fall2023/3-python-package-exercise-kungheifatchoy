@@ -6,6 +6,8 @@ def test_zero_linear_coefficient():
 def test_missing_x_squared_term():
     with pytest.raises(ValueError):
         toVertexForm("0x^2 + 2x + 3")
+    with pytest.raises(ValueError):
+        toVertexForm("b^2-4ac")
 
 def test_negative_coefficients():
     assert toVertexForm("-x^2 - 6x - 9") == "-(x + 3.0)^2"
