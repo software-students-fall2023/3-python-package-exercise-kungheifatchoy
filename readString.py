@@ -133,7 +133,6 @@ def readString(string):
 
     #array of entered string split by + or -
     c2split=re.split("\+|-",fixed_string)
-    print("C2s:  ",c2split)
     c_found=False
     skip2=False
 
@@ -157,7 +156,21 @@ def readString(string):
 
         info[2]=int(c2)
 
-        
-    return info
+    #assign signs to integers
+    a=""
+    b=""
+    c=""
+    coefs=[a,b,c]
 
-print(readString("-3x^2-x+9"))
+    for r in range(3,6):
+        if info[r]=='-':
+            coefs[r-3]+='-'
+    for r2 in range(3):
+        if r2==3:
+            break
+
+        coefs[r2]+=str(info[r2])
+        coefs[r2]=int(coefs[r2])
+
+    return coefs
+
