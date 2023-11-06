@@ -74,16 +74,26 @@ def readString(string):
     counter_0s_0=0
 
     #iterate backwards to find full coefficient
+    found_decimal0=False
+    decimal_pos0=0
     for i in range(c0i-1,-1,-1): 
         if skip0==True:
             break
         if fixed_string[i].isnumeric()==False:
+            if fixed_string[i]=='.' and found_decimal0==False:
+                found_decimal0=True
+                decimal_pos0=counter_0s_0
+                continue
+
             return "ERROR: incorrect format of quadratic @ 81"
         info[0] += int(fixed_string[i])*10**counter_0s_0
         counter_0s_0+=1
 
     if info[0]==0:
         return "ERROR: not quadratic"
+    
+    if decimal_pos0>0:
+        info[0]=info[0]/(10**decimal_pos0)
 
     ###########################################################################################
     #find coefficient b
@@ -115,12 +125,18 @@ def readString(string):
         skip1=True
 
     counter_0s_1=0
+    decimal_pos1=0
 
-    #iterate backards to find full coe
+    #iterate backards to find full coefficient
+    found_decimal1=False
     for k in range(c1i-1,-1,-1): 
         if skip1==True:
             break
         if split_string[1][k].isnumeric()==False:
+            if split_string[1][k]=='.' and found_decimal1==False:
+                found_decimal1=True
+                decimal_pos1=counter_0s_1
+                continue
             #this would be an error, i think this part of the code can never be reached, need to double check
             if split_string[1][k]=='+' or split_string[1][k]=='-':
                 break
@@ -129,6 +145,9 @@ def readString(string):
             break
         info[1] += int(split_string[1][k])*10**counter_0s_1
         counter_0s_1+=1
+
+    if decimal_pos1>0:
+        info[1]=info[1]/(10**decimal_pos1)
 
     
     ###########################################################################################
@@ -144,23 +163,36 @@ def readString(string):
     for s in c2split:
         if re.search("x",s) == None:
             c_found=True
-
     if c_found == False:
         info[2]=0
         skip2=True
 
+    found_decimal2=False
+    decimal_pos2=0
+    digits_passed=0
 
     if skip2==False:
         c2=""
         #iterate through final string of the array, which only contains numbers not followed by x (c term)
         for l in c2split[len(c2split)-1]:
             if l.isnumeric()==False:
+                if l=='.' and found_decimal2==False:
+                    found_decimal2=True
+                    decimal_pos2=digits_passed
+                    continue
                 return "ERROR: incorrect format of quadratic @ 158"
             c2+=l
+            digits_passed +=1
 
         info[2]=int(c2)
 
-    #assign signs to integers
+        if decimal_pos2>0:
+            info[2]=info[2]/(10**(len(c2)-decimal_pos2))
+
+
+
+    #assign signs to coefficients
+    #_______________________________
     a=""
     b=""
     c=""
