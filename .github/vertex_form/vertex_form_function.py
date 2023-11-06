@@ -1,14 +1,14 @@
 import re
 
-def to_vertex_form(std_form):
+def toVertexForm(stdForm):
     # Remove whitespace and tokenize the input
-    tokens = re.findall(r'([-+]?[^-+]+)', std_form.replace(" ", ""))
+    tokens = re.findall(r'([-+]?[^-+]+)', stdForm.replace(" ", ""))
     a = b = c = 0
 
     # check if quadratic
     x2_present = any('x^2' in token for token in tokens)
     if not x2_present:
-        raise ValueError("Input is not a valid quadratic equation.")
+        raise ValueError("Error: Invalid Input, Try Again")
 
     # Regular expressions to match coefficients
     square_term = r'([-+]?\d*\.?\d*)x\^2'
@@ -34,7 +34,7 @@ def to_vertex_form(std_form):
 
     # if a = 0 invalid quadratic
     if a == 0:
-        raise ValueError("The coefficient of x^2 cannot be 0 for a quadratic equation.")
+        raise ValueError("No Real Solution, Try Again")
 
     # Convert to vertex form
     h = -b / (2 * a)
@@ -56,8 +56,8 @@ def to_vertex_form(std_form):
 
 # Examples
 std_form = "3x^2 + 2x + 1"
-print(to_vertex_form(std_form)) 
+print(toVertexForm(std_form)) 
 std_form = "x^2 - 4"
-print(to_vertex_form(std_form))  
+print(toVertexForm(std_form))  
 std_form = "0.5x^2 + 1.5x + 0.25"
-print(to_vertex_form(std_form))
+print(toVertexForm(std_form))
