@@ -50,8 +50,10 @@ def readString(string):
     ###########################################################################################
 
     ops=re.findall("\+|-",fixed_string)
-    info[4]=ops[0]
-    info[5]=ops[1]
+    if ops:
+        info[4]=ops[0]
+        if len(ops)>1:
+            info[5]=ops[1]
 
    
     ###########################################################################################
@@ -76,10 +78,12 @@ def readString(string):
         if skip0==True:
             break
         if fixed_string[i].isnumeric()==False:
-            return "ERROR: incorrect format of quadratic @ 72"
+            return "ERROR: incorrect format of quadratic @ 81"
         info[0] += int(fixed_string[i])*10**counter_0s_0
         counter_0s_0+=1
 
+    if info[0]==0:
+        return "ERROR: not quadratic"
 
     ###########################################################################################
     #find coefficient b
@@ -90,7 +94,7 @@ def readString(string):
 
     #check there is only one exponential term
     if len(re.findall("\^",split_string[1]))>1:
-        return "ERROR: incorrect format of quadratic @ 86"
+        return "ERROR: incorrect format of quadratic @ 97"
     
     
     c1=re.search("x",split_string[1])
@@ -133,7 +137,6 @@ def readString(string):
 
     #array of entered string split by + or -
     c2split=re.split("\+|-",fixed_string)
-    print("C2s:  ",c2split)
     c_found=False
     skip2=False
 
@@ -152,12 +155,26 @@ def readString(string):
         #iterate through final string of the array, which only contains numbers not followed by x (c term)
         for l in c2split[len(c2split)-1]:
             if l.isnumeric()==False:
-                return "ERROR: incorrect format of quadratic @ 148"
+                return "ERROR: incorrect format of quadratic @ 158"
             c2+=l
 
         info[2]=int(c2)
 
-        
-    return info
+    #assign signs to integers
+    a=""
+    b=""
+    c=""
+    coefs=[a,b,c]
 
-print(readString("-3x^2-x+9"))
+    for r in range(3,6):
+        if info[r]=='-':
+            coefs[r-3]+='-'
+    for r2 in range(3):
+        if r2==3:
+            break
+
+        coefs[r2]+=str(info[r2])
+        coefs[r2]=float(coefs[r2])
+
+    return coefs
+
