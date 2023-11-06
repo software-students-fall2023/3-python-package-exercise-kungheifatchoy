@@ -8,7 +8,7 @@ def toVertexForm(stdForm):
     # check if quadratic
     x2_present = any('x^2' in token for token in tokens)
     if not x2_present:
-        raise ValueError("Error: Invalid Input, Try Again")
+        raise ValueError("Error: Invalid Input for x^2, Try Again")
 
     # Regular expressions to match coefficients
     square_term = r'([-+]?\d*\.?\d*)x\^2'
@@ -34,7 +34,7 @@ def toVertexForm(stdForm):
 
     # if a = 0 invalid quadratic
     if a == 0:
-        raise ValueError("No Real Solution, Try Again")
+        raise ValueError("x^2 == 0, No Real Solution, Try Again")
 
     # Convert to vertex form
     h = -b / (2 * a)
