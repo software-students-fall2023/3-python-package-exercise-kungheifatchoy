@@ -1,6 +1,8 @@
 import math
 import re
 
+#push attempt
+
 def realSolution(string: str): 
     nums= _readString(string)
     a=nums[0]
