@@ -93,8 +93,8 @@ def test__readString_parsing_fail():
 def test_realSolution_real(monkeypatch):
     monkeypatch.setattr(pyquadratic, "_readString", lambda string: [1, -2, -3])
     actual = realSolution("x^2 -2x -3")
-    expected = [3, 1]
-    expected2 = [1 ,3]
+    expected = [3, -1]
+    expected2 = [-1 ,3]
     assert (actual == expected or actual == expected2), f"Expected Return: {expected} or {expected2}; Actual Return {actual}"
 
     monkeypatch.setattr(pyquadratic, "_readString", lambda string: [1, 0, 0])
