@@ -196,6 +196,8 @@ def _readString(string: str):
         info[1]=0
         c1i=9 #dummy value, won't be used anyways
         skip1=True
+        info[5]=info[4] #assign negative sign to c term if b term doesn't exist to account for minus sign in string (if minus sign exists)
+        info[4]='+' #if no b term, sign should be positive so that b term shows as 0 rather than -0
             
     #no explicit coefficient for x term means coefficient==1
     if c1i==3:
