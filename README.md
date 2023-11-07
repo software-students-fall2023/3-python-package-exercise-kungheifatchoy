@@ -1,7 +1,5 @@
 # Python Package Exercise
 
-## Badge
-
 ![Python build & test](https://github.com/software-students-fall2023/3-python-package-exercise-kungheifatchoy/actions/workflows/python-package.yml/badge.svg)
 
 
