@@ -112,6 +112,10 @@ def _readString(string: str):
             temp+=fixed_string[m]
         fixed_string=temp
 
+    #check for only one exponential
+    if len(re.findall("\^",fixed_string))>1:
+        raise ValueError("Error: Invalid Input, Try Again")
+
     #check there are no more than 3 terms
     if len(re.findall("x",fixed_string))>2 or len(re.findall("\+|-",fixed_string))>2:
         raise ValueError("Error: Invalid Input, Try Again")
@@ -150,18 +154,26 @@ def _readString(string: str):
         skip0=True
 
     counter_0s_0=0
+    found_decimal0=False
+    decimal_pos0=0
 
     #iterate backwards to find full coefficient
     for i in range(c0i-1,-1,-1): 
         if skip0==True:
             break
         if fixed_string[i].isnumeric()==False:
+            if fixed_string[i]=='.' and found_decimal0==False:
+                found_decimal0=True
+                decimal_pos0=counter_0s_0
+                continue
             raise ValueError("Error: Invalid Input, Try Again")
         info[0] += int(fixed_string[i])*10**counter_0s_0
         counter_0s_0+=1
 
     if info[0]==0:
         raise ValueError("Error: Invalid Input, Try Again")
+
+    info[0]=info[0]/(10**decimal_pos0)
 
     ###########################################################################################
     #find coefficient b
@@ -184,6 +196,8 @@ def _readString(string: str):
         info[1]=0
         c1i=9 #dummy value, won't be used anyways
         skip1=True
+        info[5]=info[4] #assign negative sign to c term if b term doesn't exist to account for minus sign in string (if minus sign exists)
+        info[4]='+' #if no b term, sign should be positive so that b term shows as 0 rather than -0
             
     #no explicit coefficient for x term means coefficient==1
     if c1i==3:
@@ -191,12 +205,18 @@ def _readString(string: str):
         skip1=True
 
     counter_0s_1=0
+    decimal_pos1=0
+    found_decimal1=False
 
     #iterate backards to find full coe
     for k in range(c1i-1,-1,-1): 
         if skip1==True:
             break
         if split_string[1][k].isnumeric()==False:
+            if split_string[1][k]=='.' and found_decimal1==False:
+                found_decimal1=True
+                decimal_pos1=counter_0s_1
+                continue
             #this would be an error, i think this part of the code can never be reached, need to double check
             if split_string[1][k]=='+' or split_string[1][k]=='-':
                 break
@@ -206,7 +226,7 @@ def _readString(string: str):
         info[1] += int(split_string[1][k])*10**counter_0s_1
         counter_0s_1+=1
 
-    
+    info[1]=info[1]/(10**decimal_pos1)
     ###########################################################################################
     #find coefficient c
     ########################################################################################### 
@@ -225,16 +245,26 @@ def _readString(string: str):
         info[2]=0
         skip2=True
 
-
+    passed_digits=0
+    decimal_pos2=0
+    found_decimal2=False
     if skip2==False:
         c2=""
         #iterate through final string of the array, which only contains numbers not followed by x (c term)
         for l in c2split[len(c2split)-1]:
             if l.isnumeric()==False:
+                if l=='.' and found_decimal2==False:
+                    found_decimal2=True
+                    decimal_pos2=passed_digits
+                    continue
                 raise ValueError("Error: Invalid Input, Try Again")
             c2+=l
+            passed_digits+=1
 
         info[2]=int(c2)
+
+        if found_decimal2==True:
+            info[2]=info[2]/(10**(len(c2)-decimal_pos2))
 
     #assign signs to integers
     a=""
@@ -251,3 +281,4 @@ def _readString(string: str):
         coefs[r2]+=str(info[r2])
         coefs[r2]=float(coefs[r2])
     return coefs
+
