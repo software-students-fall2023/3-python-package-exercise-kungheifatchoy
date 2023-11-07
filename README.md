@@ -25,6 +25,16 @@ Now you will be able to use the functions included in the pyquadratic package!
 
 ### How to Contribute:
 
+Fork the Repository.
+
+Clone it to your local directory.
+
+Go to terminal, locate the project directory, and run:  
+
+`pip install pipenv`
+
+
+
 
 
 ` # code example for how a developer who wants to contribute to your project can set up the virtual environment, install dependencies, and build and test your package for themselves.`
