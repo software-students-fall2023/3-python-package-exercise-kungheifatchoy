@@ -151,8 +151,7 @@ def test_to_vertex_form_various_coefficients():
         ("x^2 + x", "(x + 0.5)^2 - 0.25", "no constant term"),
         ("1000x^2 + 2000x + 1000", "1000.0(x + 1.0)^2", "large coefficients"),
         ("x^2 - 4", "x^2 - 4", "no x term"),
-        ("3x^2 + 3x + 1", "3.0(x + 0.5)^2 + 0.25", "positive coefficients"),
-        
+        ("3x^2 + 3x + 1", "3.0(x + 0.5)^2 + 0.25", "positive coefficients")
     ]
 
     for expression, expected, msg in test_cases:
