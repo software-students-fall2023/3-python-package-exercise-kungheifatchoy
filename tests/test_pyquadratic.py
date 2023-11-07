@@ -1,5 +1,5 @@
-from .pyquadratic import *
-from . import pyquadratic
+from pyquadratic.pyquadratic import *
+from pyquadratic import pyquadratic
 import pytest
 
 def test__readString_parsing_success():
@@ -263,5 +263,4 @@ def test_simplifyQuadratic_decimal_coefficient():
     
     actual = simplifyQuadratic('0.015x^2+3x-1')
     expected = '3x^2+600x-200'
-    assert actual == expected, f"Expected Return: {expected}; Actual Return: {actual}"
-    
+    assert actual == expected, f"Expected Return: {expected}; Actual Return: {actual}"  
