@@ -1,7 +1,5 @@
 # Python Package Exercise
 
-## Badge
-
 ![Python build & test](https://github.com/software-students-fall2023/3-python-package-exercise-kungheifatchoy/actions/workflows/python-package.yml/badge.svg)
 
 
@@ -11,12 +9,23 @@ A python package designed to facilitate the solving and manipulation of quadrati
 
 ## Instructions
 
-*write instructions here*
+
+### How to import:
+
+Go to terminal and run:
+`pip install pyquadratic`
+
+In your python file, be sure to include: 
+
+`from pyquadratic.pyquadratic import *`
+
+Now you will be able to use the functions included in the pyquadratic package!
+
+[example](src/pyquadratic/__main__.py)
+
+### How to Contribute:
 
 
-## Code Examples
-
-` # code example for how a developer who wants to import your project into their own code can do so - include documentation for all functions in your package and a link to an example Python program that uses each of them.`
 
 ` # code example for how a developer who wants to contribute to your project can set up the virtual environment, install dependencies, and build and test your package for themselves.`
 

@@ -1,6 +1,7 @@
 import math
 import re
 
+
 def realSolution(string: str) -> []: 
     nums= _readString(string)
     a=nums[0]
@@ -12,9 +13,9 @@ def realSolution(string: str) -> []:
     answers.append((b*(-1)+math.sqrt(b*b-4*a*c))/2*a)
     answers.append((b*(-1)-math.sqrt(b*b-4*a*c))/2*a)
 
-    for a in answers:
-        if int(a)==a:
-            a=int(a)
+    for a in range(len(answers)):
+        if answers[a]==int(answers[a]):
+            answers[a]=int(answers[a])
     return answers
 
 def toFactoredForm(stdForm: str) -> str:
@@ -43,41 +44,8 @@ def toFactoredForm(stdForm: str) -> str:
     return factored_form 
 
 def toVertexForm(stdForm: str) -> str:
-    # # Remove whitespace and tokenize the input
-    # tokens = re.findall(r'([-+]?[^-+]+)', stdForm.replace(" ", ""))
-    # a = b = c = 0
-
-    # # check if quadratic
-    # x2_present = any('x^2' in token for token in tokens)
-    # if not x2_present:
-    #     raise ValueError("Error: Invalid Input for x^2, Try Again")
-
-    # # Regular expressions to match coefficients
-    # square_term = r'([-+]?\d*\.?\d*)x\^2'
-    # linear_term = r'([-+]?\d*\.?\d*)x(?!\^)'
-    # constant_term = r'([-+]?\d*\.?\d*)$'
-
-    # # Extract coefficients
-    # for token in tokens:
-    #     if 'x^2' in token:
-    #         if token.strip() in ['-x^2', '+x^2', 'x^2']:
-    #             a = 1 if token.strip() in ['+x^2', 'x^2'] else -1
-    #         else:
-    #             a = float(re.search(square_term, token).group(1))
-    #     elif 'x' in token:
-    #         if token.strip() in ['-x', '+x', 'x']:
-    #             b = 1 if token.strip() in ['+x', 'x'] else -1
-    #         else:
-    #             b = float(re.search(linear_term, token).group(1))
-    #     else:
-    #         match = re.search(constant_term, token)
-    #         if match:
-    #             c = float(match.group(1))
-
-    # # if a = 0 invalid quadratic
-    # if a == 0:
-    #     raise ValueError("x^2 == 0, No Real Solution, Try Again")
-
+   
+    #find values of a,b,c
     a=_readString(stdForm)[0]
     b=_readString(stdForm)[1]
     c=_readString(stdForm)[2]
