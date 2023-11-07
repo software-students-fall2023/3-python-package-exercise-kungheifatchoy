@@ -29,7 +29,17 @@ def toFactoredForm(stdForm: str) -> str:
     sign1 = "+" if solutions[1] < 0 else "-"
     solutions[0] = abs(solutions[0])
     solutions[1] = abs(solutions[1])
-    factored_form = str(a) + "(x" + str(sign0) + str(solutions[0]) + ")(x" + str(sign1) + str(solutions[1]) + ")"
+    if int(solutions[0]) == solutions[0]:
+        r1 = int(solutions[0])
+    else:
+        r1 = solutions[0]
+    
+    if int(solutions[1]) == solutions[1]:
+        r2 = int(solutions[1])
+    else:
+        r2 = solutions[1]
+
+    factored_form = str(a) + "(x" + str(sign0) + str(r1) + ")(x" + str(sign1) + str(r2) + ")"
     return factored_form 
 
 def toVertexForm(stdForm: str) -> str:
