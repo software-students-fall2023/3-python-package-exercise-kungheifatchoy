@@ -427,5 +427,3 @@ def _readString(string: str):
             coefs[r3]=round((coefs[r3]))
 
     return coefs
-
-print(toVertexForm("  x^2 + 6x + 9  "))
