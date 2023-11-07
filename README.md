@@ -21,7 +21,7 @@ In your python file, be sure to include:
 
 Now you will be able to use the functions included in the pyquadratic package!
 
-[example](src/pyquadratic/__main__.py)
+[example](example.py)
 
 ### How to Contribute:
 
