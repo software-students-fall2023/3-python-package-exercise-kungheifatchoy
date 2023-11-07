@@ -2,10 +2,8 @@
 
 ## Badge
 
-*include badge showing the result of the latest build/test workflow run.*
+![Python build & test](https://github.com/software-students-fall2023/3-python-package-exercise-kungheifatchoy/actions/workflows/python-package.yml/badge.svg)
 
-![example branch parameter]
-(https://github.com/github/docs/actions/workflows/main.yml/badge.svg?branch=main)
 
 ## Project Description
 
@@ -26,8 +24,11 @@ A python package designed to facilitate the solving and manipulation of quadrati
 ## Team Names
 
 Nicolas Izurieta: https://github.com/ni2050
-Patrick Zhao: https://github.com/ni2050
+
+Patrick Zhao: https://github.com/PatrickZhao0
+
 Brad Yin: https://github.com/BREADLuVER
+
 Yucheng Xu: https://github.com/Yucheng-XPH
 
 
