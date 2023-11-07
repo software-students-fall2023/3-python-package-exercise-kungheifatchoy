@@ -28,7 +28,7 @@ def toFactoredForm(stdForm: str) -> str:
     factored_form = str(a) + "(x" + str(sign0) + str(solutions[0]) + ")(x" + str(sign1) + str(solutions[1]) + ")"
     return factored_form 
 
-def toVertexForm(stdForm: str) -> str:
+def toVertexForm(stdForm):
     # Remove whitespace and tokenize the input
     tokens = re.findall(r'([-+]?[^-+]+)', stdForm.replace(" ", ""))
     a = b = c = 0
@@ -36,7 +36,7 @@ def toVertexForm(stdForm: str) -> str:
     # check if quadratic
     x2_present = any('x^2' in token for token in tokens)
     if not x2_present:
-        raise ValueError("Error: Invalid Input, Try Again")
+        raise ValueError("Error: Invalid Input for x^2, Try Again")
 
     # Regular expressions to match coefficients
     square_term = r'([-+]?\d*\.?\d*)x\^2'
@@ -62,7 +62,7 @@ def toVertexForm(stdForm: str) -> str:
 
     # if a = 0 invalid quadratic
     if a == 0:
-        raise ValueError("Error: No Real Solution, Try Again")
+        raise ValueError("x^2 == 0, No Real Solution, Try Again")
 
     # Convert to vertex form
     h = -b / (2 * a)
