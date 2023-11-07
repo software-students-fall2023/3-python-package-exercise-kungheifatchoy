@@ -11,6 +11,10 @@ def realSolution(string: str) -> []:
         raise ValueError("Error: No Real Solution, Try Again")
     answers.append((b*(-1)+math.sqrt(b*b-4*a*c))/2*a)
     answers.append((b*(-1)-math.sqrt(b*b-4*a*c))/2*a)
+
+    for a in answers:
+        if int(a)==a:
+            a=int(a)
     return answers
 
 def toFactoredForm(stdForm: str) -> str:
@@ -39,40 +43,45 @@ def toFactoredForm(stdForm: str) -> str:
     return factored_form 
 
 def toVertexForm(stdForm: str) -> str:
-    # Remove whitespace and tokenize the input
-    tokens = re.findall(r'([-+]?[^-+]+)', stdForm.replace(" ", ""))
-    a = b = c = 0
+    # # Remove whitespace and tokenize the input
+    # tokens = re.findall(r'([-+]?[^-+]+)', stdForm.replace(" ", ""))
+    # a = b = c = 0
 
-    # check if quadratic
-    x2_present = any('x^2' in token for token in tokens)
-    if not x2_present:
-        raise ValueError("Error: Invalid Input for x^2, Try Again")
+    # # check if quadratic
+    # x2_present = any('x^2' in token for token in tokens)
+    # if not x2_present:
+    #     raise ValueError("Error: Invalid Input for x^2, Try Again")
 
-    # Regular expressions to match coefficients
-    square_term = r'([-+]?\d*\.?\d*)x\^2'
-    linear_term = r'([-+]?\d*\.?\d*)x(?!\^)'
-    constant_term = r'([-+]?\d*\.?\d*)$'
+    # # Regular expressions to match coefficients
+    # square_term = r'([-+]?\d*\.?\d*)x\^2'
+    # linear_term = r'([-+]?\d*\.?\d*)x(?!\^)'
+    # constant_term = r'([-+]?\d*\.?\d*)$'
 
-    # Extract coefficients
-    for token in tokens:
-        if 'x^2' in token:
-            if token.strip() in ['-x^2', '+x^2', 'x^2']:
-                a = 1 if token.strip() in ['+x^2', 'x^2'] else -1
-            else:
-                a = float(re.search(square_term, token).group(1))
-        elif 'x' in token:
-            if token.strip() in ['-x', '+x', 'x']:
-                b = 1 if token.strip() in ['+x', 'x'] else -1
-            else:
-                b = float(re.search(linear_term, token).group(1))
-        else:
-            match = re.search(constant_term, token)
-            if match:
-                c = float(match.group(1))
+    # # Extract coefficients
+    # for token in tokens:
+    #     if 'x^2' in token:
+    #         if token.strip() in ['-x^2', '+x^2', 'x^2']:
+    #             a = 1 if token.strip() in ['+x^2', 'x^2'] else -1
+    #         else:
+    #             a = float(re.search(square_term, token).group(1))
+    #     elif 'x' in token:
+    #         if token.strip() in ['-x', '+x', 'x']:
+    #             b = 1 if token.strip() in ['+x', 'x'] else -1
+    #         else:
+    #             b = float(re.search(linear_term, token).group(1))
+    #     else:
+    #         match = re.search(constant_term, token)
+    #         if match:
+    #             c = float(match.group(1))
 
-    # if a = 0 invalid quadratic
-    if a == 0:
-        raise ValueError("x^2 == 0, No Real Solution, Try Again")
+    # # if a = 0 invalid quadratic
+    # if a == 0:
+    #     raise ValueError("x^2 == 0, No Real Solution, Try Again")
+
+    a=_readString(stdForm)[0]
+    b=_readString(stdForm)[1]
+    c=_readString(stdForm)[2]
+
 
     # Convert to vertex form
     h = -b / (2 * a)
@@ -80,13 +89,15 @@ def toVertexForm(stdForm: str) -> str:
 
     a_str = '' if a == 1 else '-' if a == -1 else str(a)
 
-    h = round(h, 2) if h % 1 else float(h)
+    h = int(h) if int(h)==h else float(h)
+
     h_str = '' if h == 0 else str(abs(h))
     h_sign = '+' if h < 0 else '-'
-    h_term = f"(x {h_sign} {h_str})" if h_str else "x"
+    h_term = f"(x{h_sign}{h_str})" if h_str else "x"
 
-    k = round(k, 2) if k % 1 else int(k)
-    k_str = '' if k == 0 else f" + {k}" if k > 0 else f" - {-k}"
+    k = int(k) if int(k)==k else float(k)
+
+    k_str = '' if k == 0 else f"+{k}" if k > 0 else f"-{-k}"
 
     vertex_form = f"{a_str}{h_term}^2{k_str}"
 
@@ -98,7 +109,7 @@ def simplifyQuadratic(stdForm: str) -> str:
     except ValueError as e: 
         raise ValueError('Error: Invalid Input, Try Again') 
 
-    while a.is_integer() != True or b.is_integer() != True or c.is_integer() != True:
+    while a != int(a) or b != int(b) or c != int(c):
         a *= 10
         b *= 10
         c *= 10
@@ -412,6 +423,7 @@ def _readString(string: str):
     c=""
     coefs=[a,b,c]
 
+    #formatting return values
     for r in range(3,6):
         if info[r]=='-':
             coefs[r-3]+='-'
@@ -420,5 +432,8 @@ def _readString(string: str):
             break
         coefs[r2]+=str(info[r2])
         coefs[r2]=float(coefs[r2])
-    return coefs
+    for r3 in range(3):
+        if int(coefs[r3])==coefs[r3]:
+            coefs[r3]=round((coefs[r3]))
 
+    return coefs

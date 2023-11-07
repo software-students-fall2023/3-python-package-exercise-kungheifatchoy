@@ -4,13 +4,17 @@
 
 *include badge showing the result of the latest build/test workflow run.*
 
+![example branch parameter]
+(https://github.com/github/docs/actions/workflows/main.yml/badge.svg?branch=main)
+
 ## Project Description
 
-*write the project description here*
+A python package designed to facilitate the solving and manipulation of quadratic equations.
 
 ## Instructions
 
 *write instructions here*
+
 
 ## Code Examples
 
@@ -22,9 +26,12 @@
 ## Team Names
 
 Nicolas Izurieta: https://github.com/ni2050
+Patrick Zhao: https://github.com/ni2050
+Brad Yin: https://github.com/BREADLuVER
+Yucheng Xu: https://github.com/Yucheng-XPH
 
 
 ## Link to Package
 
-*insert link to package's page on PyPi website here*
+https://pypi.org/project/pyquadratic/
 
