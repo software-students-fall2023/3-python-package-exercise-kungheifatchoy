@@ -1,5 +1,6 @@
-from pyquadratic.pyquadratic import *
-from pyquadratic import pyquadratic
+from src.pyquadratic import pyquadratic
+from src.pyquadratic.pyquadratic import *
+
 import pytest
 
 def test__readString_parsing_success():
