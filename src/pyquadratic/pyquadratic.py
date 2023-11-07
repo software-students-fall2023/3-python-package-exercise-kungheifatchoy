@@ -28,7 +28,7 @@ def toFactoredForm(stdForm: str) -> str:
     factored_form = str(a) + "(x" + str(sign0) + str(solutions[0]) + ")(x" + str(sign1) + str(solutions[1]) + ")"
     return factored_form 
 
-def toVertexForm(stdForm):
+def toVertexForm(stdForm: str) -> str:
     # Remove whitespace and tokenize the input
     tokens = re.findall(r'([-+]?[^-+]+)', stdForm.replace(" ", ""))
     a = b = c = 0
