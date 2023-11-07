@@ -54,6 +54,10 @@ def test__readString_parsing_success():
     
     actual = pyquadratic._readString("-1x^2 - 1x - 1")
     expected = [-1,-1,-1]
+    assert actual == expected, f"CASE 12: Expected Return: {expected}; Actual Return: {actual}"
+
+    actual = pyquadratic._readString("6x^2-2")
+    expected = [6,0,-2]
     assert actual == expected, f"CASE 12: Expected Return: {expected}; Actual Return: {actual}"  
 
 #CASE 11 - 
@@ -90,6 +94,11 @@ def test__readString_parsing_fail():
 
     with pytest.raises(ValueError) as msg:
         pyquadratic._readString("0x^2+3x+7")
+    error_msg = str(msg.value)
+    assert "Error: Invalid Input, Try Again" == error_msg, f"Expected Msg: Error: No Invalid Input; Actual Msg: {error_msg}"
+
+    with pytest.raises(ValueError) as msg:
+        pyquadratic._readString("3x^2--2")
     error_msg = str(msg.value)
     assert "Error: Invalid Input, Try Again" == error_msg, f"Expected Msg: Error: No Invalid Input; Actual Msg: {error_msg}"
     
