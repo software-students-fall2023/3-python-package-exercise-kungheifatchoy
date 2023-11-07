@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyquadratic"
+description = "A handy tool that help student to do quadratic-formula-related problems."
+version = "0.0.1"
+authors = [
+  { name="Patrick Zhao", email="bz2099@nyu.edu" },
+  { name="Brad Yin", email="ry2050@nyu.edu"},
+  { name="Yucheng Xu", email="yx2354@nyu.edu"},
+  { name="Nicolas Izurieta", email="ni2050@nyu.edu"},
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+keywords = ["algebra", "math", "equation", "formula"]
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.urls]
+"Homepage" = "https://github.com/software-students-fall2023/3-python-package-exercise-kungheifatchoy"
+
+[project.scripts]
+pyquadratic = "pyquadratic.__main__:main"
