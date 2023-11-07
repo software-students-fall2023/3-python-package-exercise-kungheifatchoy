@@ -58,7 +58,7 @@ def test__readString_parsing_success():
 
     actual = pyquadratic._readString("6x^2-2")
     expected = [6,0,-2]
-    assert actual == expected, f"CASE 12: Expected Return: {expected}; Actual Return: {actual}"  
+    assert actual == expected, f"CASE 13: Expected Return: {expected}; Actual Return: {actual}"  
 
 #CASE 11 - 
 def test__readString_parsing_fail():
