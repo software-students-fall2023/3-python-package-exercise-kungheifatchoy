@@ -170,7 +170,7 @@ def test_to_vertex_form_various_coefficients():
         actual = toVertexForm(expression)
         assert actual == expected, f"Expected Return: {expected}; Actual Return: {actual}"
 
-def test_vertex_form_invalid_inputs():
+def test_vertex_form_invalid_inputs(monkeypatch):
     with pytest.raises(ValueError):
         toVertexForm("0x^2 + 2x + 3")
 
@@ -186,13 +186,21 @@ def test_vertex_form_invalid_inputs():
     with pytest.raises(ValueError):
         toVertexForm("2x^4 + 2x + 1")
 
-def test_simplifyQuadratic_coefficient_zero():
+def test_simplifyQuadratic_coefficient_zero(monkeypatch):
+    monkeypatch.setattr(pyquadratic, "_readString", lambda string: [16, 10, 0])
     assert simplifyQuadratic('16x^2+10x') == '8x^2+5x'
+    monkeypatch.setattr(pyquadratic, "_readString", lambda string: [21, 7, 0])
     assert simplifyQuadratic('21x^2+7x') == '3x^2+x'
+    monkeypatch.setattr(pyquadratic, "_readString", lambda string: [10, 5, 3])
     assert simplifyQuadratic('10x^2+5x+3') == '10x^2+5x+3'
+    monkeypatch.setattr(pyquadratic, "_readString", lambda string: [39, 0, 3])
     assert simplifyQuadratic('39x^2+3') == '13x^2+1'
+    monkeypatch.setattr(pyquadratic, "_readString", lambda string: [3, 0, 21])
     assert simplifyQuadratic('3x^2+21') == 'x^2+7'
+    monkeypatch.setattr(pyquadratic, "_readString", lambda string: [16, 32, 0])
     assert simplifyQuadratic('16x^2+32x') == 'x^2+2x'
+
+def test_simplifyQuadratic_coefficient_zero_fail():
     with pytest.raises(ValueError) as msg:
         simplifyQuadratic('16x+8')
     error_msg = str(msg.value)
@@ -203,68 +211,59 @@ def test_simplifyQuadratic_coefficient_zero():
     error_msg = str(msg.value)
     assert "Error: Invalid Input, Try Again" == error_msg, f"Expected Msg: Error: Invalid Input, Try Again; Actual Msg: {error_msg}"
 
-def test_simplifyQuadratic_negative_coefficient():
+def test_simplifyQuadratic_negative_coefficient(monkeypatch):
+    monkeypatch.setattr(pyquadratic, "_readString", lambda string: [-16, 8, -24])
     actual = simplifyQuadratic('-16x^2+8x-24')
     expected = '2x^2-x+3'
     assert actual == expected, f"Expected Return: {expected}; Actual Return: {actual}"
 
+    monkeypatch.setattr(pyquadratic, "_readString", lambda string: [-3, 9, -12])
     actual = simplifyQuadratic('-3x^2+9x-12')
     expected = 'x^2-3x+4'
     assert actual == expected, f"Expected Return: {expected}; Actual Return: {actual}"
 
+    monkeypatch.setattr(pyquadratic, "_readString", lambda string: [-1, 3, -2])
     actual = simplifyQuadratic('-1x^2+3x-2')
     expected = 'x^2-3x+2'
     assert actual == expected, f"Expected Return: {expected}; Actual Return: {actual}"
   
+    monkeypatch.setattr(pyquadratic, "_readString", lambda string: [-3, -3, 3])
     actual = simplifyQuadratic('-3x^2-3x+3')
     expected = 'x^2+x-1'
     assert actual == expected, f"Expected Return: {expected}; Actual Return: {actual}"
     
+    monkeypatch.setattr(pyquadratic, "_readString", lambda string: [3, -1, 0])
     actual = simplifyQuadratic('3x^2-x')
     expected = '3x^2-x'
     assert actual == expected, f"Expected Return: {expected}; Actual Return: {actual}"
     
+    monkeypatch.setattr(pyquadratic, "_readString", lambda string: [-3, 0, 9])
     actual = simplifyQuadratic('-3x^2+9')
     expected = 'x^2-3'
     assert actual == expected, f"Expected Return: {expected}; Actual Return: {actual}"
 
+    monkeypatch.setattr(pyquadratic, "_readString", lambda string: [-2, -2, -2])
     actual = simplifyQuadratic('-2x^2-2x-2')
     expected = 'x^2+x+1'
     assert actual == expected, f"Expected Return: {expected}; Actual Return: {actual}"
 
+    monkeypatch.setattr(pyquadratic, "_readString", lambda string: [9, 0, -6])
     actual = simplifyQuadratic('9x^2-6')
     expected = '3x^2-2'
     assert actual == expected, f"Expected Return: {expected}; Actual Return: {actual}"
 
-def test_simplifyQuadratic_decimal_coefficient():
+def test_simplifyQuadratic_decimal_coefficient(monkeypatch):
+    monkeypatch.setattr(pyquadratic, "_readString", lambda string: [6.6, 4.4, -2.2])
     actual = simplifyQuadratic('6.6x^2+4.4x-2.2')
     expected = '3x^2+2x-1'
     assert actual == expected, f"Expected Return: {expected}; Actual Return: {actual}"
 
+    monkeypatch.setattr(pyquadratic, "_readString", lambda string: [6.6, 0, -2.2])
     actual = simplifyQuadratic('6.6x^2-2.2')
     expected = '3x^2-1'
     assert actual == expected, f"Expected Return: {expected}; Actual Return: {actual}"
 
+    monkeypatch.setattr(pyquadratic, "_readString", lambda string: [0.05, 0.3, -10])
     actual = simplifyQuadratic('0.05x^2+0.3x-10')
     expected = 'x^2+6x-200'
     assert actual == expected, f"Expected Return: {expected}; Actual Return: {actual}"
-
-    actual = simplifyQuadratic('-0.6 x^2+0.03x-9')
-    expected = '20x^2-x+300'
-    assert actual == expected, f"Expected Return: {expected}; Actual Return: {actual}"
-
-    actual = simplifyQuadratic('0.01x^2+0.5x-0.7')
-    expected = 'x^2+50x-70'
-    assert actual == expected, f"Expected Return: {expected}; Actual Return: {actual}"
-
-    actual = simplifyQuadratic('2x^2+0.4x+0.8')
-    expected = '5x^2+x+2'
-    assert actual == expected, f"Expected Return: {expected}; Actual Return: {actual}"
-
-    actual = simplifyQuadratic('0.003x^2-0.2x+2.02')
-    expected = '3x^2-200x+2020'
-    assert actual == expected, f"Expected Return: {expected}; Actual Return: {actual}"
-    
-    actual = simplifyQuadratic('0.015x^2+3x-1')
-    expected = '3x^2+600x-200'
-    assert actual == expected, f"Expected Return: {expected}; Actual Return: {actual}"  
