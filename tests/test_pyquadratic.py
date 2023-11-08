@@ -101,6 +101,10 @@ def test__readString_parsing_fail():
     error_msg = str(msg.value)
     assert "Error: Invalid Input, Try Again" == error_msg, f"Expected Msg: Error: Invalid Input, Try Again; Actual Msg: {error_msg}"
     
+    with pytest.raises(ValueError) as msg:
+        pyquadratic._readString("3x^2+5x+7=9")
+    error_msg = str(msg.value)
+    assert "Error: Invalid Input, Try Again. There should be no = sign in the input. Please format in the following manner: ax^2+bc+c" == error_msg, f"Expected Msg: Error: Invalid Input, Try Again; Actual Msg: {error_msg}"
 def test_realSolution_real(monkeypatch):
     monkeypatch.setattr(pyquadratic, "_readString", lambda string: [1, -2, -3])
     actual = realSolution("x^2 -2x -3")

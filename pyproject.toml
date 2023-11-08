@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "pyquadratic"
 description = "A python package designed to facilitate the solving and manipulation of quadratic equations."
-version = "1.0.0"
+version = "1.0.4"
 authors = [
   { name="Patrick Zhao", email="bz2099@nyu.edu" },
   { name="Brad Yin", email="ry2050@nyu.edu"},

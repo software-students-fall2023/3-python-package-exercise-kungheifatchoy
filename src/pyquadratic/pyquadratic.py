@@ -243,6 +243,10 @@ def _readString(string: str):
     if re.search("\^2",fixed_string) == None or (fixed_string[re.search("\^2",fixed_string).start()+1].isnumeric() and 
                                                  re.search("\^2",fixed_string).start()+3==len(fixed_string)):
         raise ValueError("Error: Invalid Input, Try Again")
+    
+    #check if quadratic format is understood correctly
+    if re.search("=",fixed_string) != None :
+        raise ValueError("Error: Invalid Input, Try Again. There should be no = sign in the input. Please format in the following manner: ax^2+bc+c")
 
     #check there are well defined terms
     for split in re.split("\+|-",fixed_string):
