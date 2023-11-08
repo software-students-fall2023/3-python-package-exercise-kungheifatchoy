@@ -21,26 +21,35 @@ In your python file, be sure to include:
 
 Now you will be able to use the functions included in the pyquadratic package!
 
-[example](example.py)
+[Example Code](https://github.com/software-students-fall2023/3-python-package-exercise-kungheifatchoy/blob/main/example.py)
 
-### How to Contribute:
+### How to Contribute to the Project:
 
-Fork the Repository.
+#### How to Set Up the Virtual Environment
 
-Clone it to your local directory.
+* Fork the Repository.
 
-Go to terminal, locate the project directory, and run:  
+* Clone it to your local directory.
 
-`pip install pipenv`
+* Go to terminal, locate the project directory, and run:  `pip install pipenv`.
 
+* Run `pipenv shell` to activate the virtual environment.
 
+* Run `pipenv install` to install all the required dependencies for developemnt.
 
+#### How to Set Up the Virtual Environment
 
+* Before very build, make sure you delete `dist` and `pyquadratic.egg-info` 
+directory.
 
-` # code example for how a developer who wants to contribute to your project can set up the virtual environment, install dependencies, and build and test your package for themselves.`
+* Update version number in `pyproject.toml` if approved.
+* Go to terminal, locate the project directory, and run:  `python -m build` or `python3 -m build`.
 
+#### How to Set Up the Virtual Environment
 
-## Team Names
+* Go to terminal, locate the project directory, and run:  `pytest`.
+
+## Team Members
 
 Nicolas Izurieta: https://github.com/ni2050
 
