@@ -5,7 +5,98 @@
 
 ## Description
 
-A python package designed to facilitate the solving and manipulation of quadratic equations.
+#### A python package designed to facilitate the solving and manipulation of quadratic equations.
+
+### `simplifyQuadratic()`
+
+Returns a simplified quadratic functions from the given input quadratic function.
+
+#### Parameters
+
+| Parameter | Type | Values            |
+|-----------|------|-------------------|
+| stdForm   | `str`  | "2x^2+8x+2"    | 
+
+#### Return type
+`str`
+
+#### Errors
+
+- If the `stdForm` value provided is not in the correct format a, `Value Error` exception is raised. 
+
+### `realSolution()`
+
+Returns the solutions for a quadratic equation entered in the format ax^2+bx+c
+
+#### Parameters
+
+| Parameter | Type | Values            |
+|-----------|------|-------------------|
+| stdForm  | `str`  |"2x^2+8x+2"  | 
+
+
+#### Return type
+`float[2]` or `int[2]`
+
+#### Errors
+
+- If the `stdForm` value provided is not in the correct format, a `Value Error` exception is raised. 
+- If a real solution does not exist, a `Value Error` exception is raised. 
+
+### `toFactoredForm()`
+
+Returns the factored form of the corresponding standard form of quadratic equation
+
+#### Parameters
+
+| Parameter | Type | Values            |
+|-----------|------|-------------------|
+| stdForm  | `str`  |"2x^2+8x+2"  | 
+
+
+#### Return type
+`str`
+
+#### Errors
+
+- If the `stdForm` value provided is not in the correct format, a `Value Error` exception is raised. 
+- If a real solution does not exist, a `Value Error` exception is raised. 
+
+### `toVertexForm()`
+
+Returns the vertex form of the corresponding standard form of quadratic equation
+
+#### Parameters
+
+| Parameter | Type | Values            |
+|-----------|------|-------------------|
+| stdForm  | `str`  |"2x^2+8x+2" | 
+
+
+#### Return type
+`str`
+
+#### Errors
+
+- If the `stdForm` value provided is not in the correct format, a `Value Error` exception is raised. 
+
+### `pyquadratic._readString()` (<span style="color: red;">Private: for contributors only</span>)
+
+Returns the coefficients for an ax^2+bx+c string of a quadratic equation
+
+#### Parameters
+
+| Parameter | Type | Values            |
+|-----------|------|-------------------|
+| stdForm  | str  |"2x^2+8x+2"  | 
+
+
+#### Return type
+`float[3]` or `int[3]`
+
+#### Errors
+
+- If the `stdForm` value provided is not in the correct format, a `Value Error` exception is raised. 
 
 ## Instructions
 
