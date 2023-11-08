@@ -9,8 +9,7 @@ A python package designed to facilitate the solving and manipulation of quadrati
 
 ## Instructions
 
-Use the standard form ax^2+bx+c to use pyquadratic functions. *Note no = sign in the expression.
-
+Use the standard form `ax^2+bx+c` to use pyquadratic functions (Always assume = 0)
 ### How to import:
 
 Go to terminal and run:
