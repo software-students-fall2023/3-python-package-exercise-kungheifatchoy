@@ -1,9 +1,9 @@
-# Python Package Exercise
+# Pyquadratic
 
 ![Python build & test](https://github.com/software-students-fall2023/3-python-package-exercise-kungheifatchoy/actions/workflows/python-package.yml/badge.svg)
 
 
-## Project Description
+## Description
 
 A python package designed to facilitate the solving and manipulation of quadratic equations.
 
@@ -37,7 +37,7 @@ Now you will be able to use the functions included in the pyquadratic package!
 
 * Run `pipenv install` to install all the required dependencies for developemnt.
 
-#### How to Set Up the Virtual Environment
+#### How to Build
 
 * Before every build, make sure you delete `dist` and `pyquadratic.egg-info` 
 directory.
@@ -45,7 +45,7 @@ directory.
 * Update version number in `pyproject.toml` if approved.
 * Go to terminal, locate the project directory, and run:  `python -m build` or `python3 -m build`.
 
-#### How to Set Up the Virtual Environment
+#### How to Test
 
 * Go to terminal, locate the project directory, and run:  `pytest`.
 
