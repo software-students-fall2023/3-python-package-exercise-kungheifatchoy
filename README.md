@@ -40,7 +40,7 @@ Now you will be able to use the functions included in the pyquadratic package!
 
 #### How to Set Up the Virtual Environment
 
-* Before very build, make sure you delete `dist` and `pyquadratic.egg-info` 
+* Before every build, make sure you delete `dist` and `pyquadratic.egg-info` 
 directory.
 
 * Update version number in `pyproject.toml` if approved.
